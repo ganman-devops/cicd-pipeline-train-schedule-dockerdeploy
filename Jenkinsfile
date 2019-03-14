@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     
-                    docker.withRegistry('https://registry.hub.docker.com', 'cat /my_password.txt | docker login --username ganman --password-stdin') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                     }
