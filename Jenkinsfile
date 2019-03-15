@@ -13,9 +13,7 @@ pipeline {
             steps {
                 script {
                     app = docker.build("ganman/train-schedule")
-                    app.inside {
-                        sh 'echo $(curl localhost:9090)'
-                    }
+
                 }
             }
         }
