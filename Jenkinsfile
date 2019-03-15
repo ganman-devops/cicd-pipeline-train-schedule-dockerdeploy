@@ -13,6 +13,10 @@ pipeline {
             steps {
                 script {
                     app = docker.build("ganman/train-schedule")
+                    app.inside {
+                        sh 'sleep 120'
+                        sh 'echo $(curl localhost:8080)'
+                    }
 
                 }
             }
