@@ -15,7 +15,7 @@ pipeline {
                     app = docker.build("ganman/train-schedule")
                    
                     app.inside {
-                        sh 'echo $(curl 127.0.0.1:8080)'
+                        sh 'echo $(curl 192.168.1.150:8080)'
                     }
 
                     
