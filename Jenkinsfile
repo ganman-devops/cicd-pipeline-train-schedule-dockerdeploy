@@ -15,7 +15,7 @@ pipeline {
                     app = docker.build("ganman/train-schedule")
                     app.inside {
                         sh 'sleep 120'
-                        sh 'echo $(curl localhost:9090)'
+                        sh 'echo $(curl localhost:8080)'
                     }
 
                 }
@@ -47,7 +47,7 @@ pipeline {
                         } catch (err) {
                             echo: 'caught error: $err'
                         }
-                        sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$prod_ip \"docker run --restart always --name train-schedule -p 9090:9090 -d ganman/train-schedule:${env.BUILD_NUMBER}\""
+                        sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$prod_ip \"docker run --restart always --name train-schedule -p 8080:8080 -d ganman/train-schedule:${env.BUILD_NUMBER}\""
                     }
                 }
             }
